@@ -1,0 +1,14 @@
+@import './constants/variables';
+
+input:focus::placeholder {
+  color: transparent;
+}
+
+html {
+  margin: 0;
+  background-color: $colorsGrey0;
+}
+
+.shop {
+
+}

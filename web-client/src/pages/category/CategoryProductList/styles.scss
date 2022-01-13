@@ -1,0 +1,27 @@
+@import './../../../constants/variables';
+
+.productListWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 500px;
+    background-color: $colorsGrey0;
+    margin-top: 25px;
+    .productListHeader {
+        display: flex;
+        width: 100%;
+        height: 40px;
+        border-bottom: 1px solid $colorsGrey3;
+        .categoryLogo {
+            display: flex;
+            max-width: 50px;
+            height: 100%;
+        }
+    }
+    .productListMain {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        min-height: 500px;
+    }
+}

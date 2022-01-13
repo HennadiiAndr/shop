@@ -1,0 +1,143 @@
+@import "../../../constants/variables";
+
+.main{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 500px;
+    background-color: $colorsGrey0;
+    margin-top: 25px;
+    @media (max-width: 550px) {
+        flex-direction: column;
+    }
+    .checkoutMain_header{
+        display: flex;
+        width: 100%;
+        height: 70px;
+        justify-content: flex-start;
+        align-items: center;
+        .checkoutMain_header-title{
+            display: flex;
+            width: 70%;
+            margin-left: 20px;
+            @include productdaycardText3;
+            font-size: 20px;
+        }
+    }
+    .checkoutMain_mainContainer{
+        display: flex;
+        width: 100%;
+        min-height: 450px;
+        @media (max-width: 550px) {
+            flex-direction: column;
+        }
+    }
+    .checkoutNameInput_title{
+        display: flex;
+        width: 100%;
+        height: 20px;
+        align-items: center;
+        .authorize{
+            margin-left: 60px;
+            @include productdaycardText4;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+        .checkoutNameInput_title-text{
+            @include productdaycardText4;
+            margin-left: 50px;
+        }
+    }
+    .checkoutNameInput_wrapper{
+        display: flex;
+        width: 50%;
+        min-height: 450px;
+        flex-direction: column;
+        align-items: center;
+        @media (max-width: 550px) {
+            width: 100%;
+        }
+    }
+    .checkoutMain_productList-wrapper{
+        display: flex;
+        width: 50%;
+        min-height: 450px;
+        flex-direction: column;
+        align-items: center;
+        @media (max-width: 550px) {
+            width: 100%;
+        }
+    }
+    .checkoutProductList_title{
+        display: flex;
+        width: 100%;
+        height: 20px;
+        align-items:center;
+        justify-content: space-between;
+        @include productdaycardText4;
+        .checkoutProductList_title-text{
+            margin-left: 60px;
+        }
+        .checkoutProductList_redo{
+            margin-right: 60px;
+            &:hover{
+                cursor: pointer;
+            }
+        }
+    }
+    input{
+        outline: 0 !important;
+        border: 0;
+    }
+    input::placeholder{
+        @include productdaycardText3;
+        margin: auto;
+    }
+    option{
+        @include productdaycardText3;
+        margin: auto;
+    }
+    option:checked{
+        @include productdaycardText3;
+        margin: auto;
+    }
+    .checkoutProductList_comments{
+        width: 80%;
+        height: 20px;
+        line-height: 20px;
+        text-align: center;
+        @include productdaycardText3;
+    }
+    .checkoutProductList_comments-wrapper{
+        display: flex;
+        width: 96%;
+        height: 90px;
+        margin-top: 25px;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid $colorsGrey1;
+        
+    }
+    .checkoutProductList_buyButton{
+        display: flex;
+        width: 250px;
+        height: 60px;
+        margin-top: 25px;
+        border-radius: 3px;
+        justify-content: center;
+        align-items: center;
+        background-color: $colorsGrey1;
+        @include productdaycardText3;
+        font-size: 18px;
+        color: $colorsGrey2;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+    .checkoutProductList_foot{
+        display: flex;
+        width: 100%;
+        height: 20px;
+    }
+}

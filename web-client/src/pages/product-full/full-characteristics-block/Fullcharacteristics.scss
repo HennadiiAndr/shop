@@ -1,0 +1,75 @@
+@import './../../../constants/variables';
+
+
+        
+.FullCharacteristics__listContainer{
+    display: flex;
+    width: 100%;
+    min-height: 500px;
+    margin-top: 25px;
+    flex-direction: column;
+    align-items: center;
+    background-color: $colorsGrey0;
+    .FullCharacteristics__list-titleWrapper{
+        @include productdaycardText3;
+        display: flex;
+        width: 100%;
+        height: 30px;
+        align-items: flex-end;
+        margin-bottom: 15px;
+        margin-top: 10px;
+    }
+    .title-text{
+        margin-left: 10px;
+    }
+    .list-wrapper{
+        display: flex;
+        width: 100%;
+        .FullCharacteristics__list{
+            display: flex;
+            width: 70%;
+            min-height: 550px;
+            flex-direction: column;
+            align-items: center;
+            margin-left: 10px;
+            background-color: $colorsGrey0;
+            @media (max-width: 970px) {
+                width: 100%;
+            }
+            .listItem_container{
+                display: flex;
+                width: 100%;
+                min-height: 35px;                    
+                .property_name{
+                    display: flex;
+                    width: 50%;
+                    height: 100%;                                            
+                    @include productdaycardText3;
+                    margin-left: 10px;
+                    text-transform: capitalize;
+                }
+                .value__name{
+                    display: flex;
+                    width: 50%;
+                    height: 100%;                        
+                    @include productdaycardText1;
+                    margin-left: 10px;
+                }
+            }
+            .listItem_container:nth-child(odd){
+                background-color: #CCC;
+            }
+        }
+        .fullproduct__bannerwrapper{
+            display: flex;
+            width: 30%;
+            min-height: 700px;
+            justify-content: flex-end;
+            margin-right: 10px;
+            @media (max-width: 970px) {
+                display: none;
+            }
+        }
+    }
+    
+}

@@ -1,0 +1,25 @@
+@import '../../../../../../constants/variables';
+
+.headersearchbarbutton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 44px;
+    border-radius: 0 2px 2px 0;
+    background-color: $colorYellow;
+}
+.headersearchbarbutton:hover {
+    cursor: pointer;
+}
+.headersearchbarbuttoninner {
+    width: 16px;
+    height: 16px;
+}
+.headersearchbarbuttoninner svg {
+    fill: $colorsBluePrimary;
+}
+.headersearchbarbutton:hover svg {
+    fill: $colorsGrey0;
+}
+

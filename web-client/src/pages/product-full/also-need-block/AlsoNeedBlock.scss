@@ -1,0 +1,36 @@
+@import './../../../constants/variables';
+
+.mainWrapper {
+    display: flex;
+    width: 100%;
+    min-height: 600px;
+    margin-top: 25px;
+    flex-direction: column;
+    background-color: $colorsGrey0;
+    .headerWrapper{
+        display: flex;
+        width: 100%;
+        height: 50px;
+        justify-content: space-between;
+        align-items: center;
+        .text {
+            display: flex;
+            @include productdaycardText3;
+            padding-left: 20px;
+        }
+    }
+    .compactcards__Wrapper{
+        display: flex;
+        width: 100%;
+        min-height: 500px;
+        @media(max-width:767px){
+            flex-wrap: wrap;
+            margin-top: 0;
+        }
+        @media(max-width:550px){
+            flex-direction: column;
+            margin-top: 0;
+        }
+    }
+    
+}

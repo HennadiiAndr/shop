@@ -1,0 +1,8 @@
+styleguide/*
+coverage/*
+node_modules/*
+node_modules
+dist/*
+ios
+android
+serviceWorker.*

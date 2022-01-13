@@ -1,0 +1,36 @@
+@import './../../../constants/variables';
+
+.yourproduct{
+    display: flex;
+    width: 80%;
+    height: 500px;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid $colorsGrey1;
+    border-radius: 3px;
+    .yourproduct__image{
+        display: flex;
+        width: 90%;
+        img {
+            width: 100%;
+        }
+    }
+    .yourproduct__title{
+        display: flex;
+        text-align: center;
+        width: 90%;
+        height: 50px;
+        @include productdaycardText3;
+    }
+    .yourproduct__price{
+        display: flex;
+        width: 90%;
+        height: 80px;
+        justify-content: center;
+        align-items: center;
+        @include productdaycardText2;
+    }
+    @media (max-width: 970px) {
+        display: none;
+    }
+}

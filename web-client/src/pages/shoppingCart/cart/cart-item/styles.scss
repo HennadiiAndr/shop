@@ -1,0 +1,96 @@
+@import '../../../../constants/variables';
+
+.cart_product-card{
+    display: flex;
+    width: 100%;
+    min-height: 100px;
+    box-sizing: border-box;
+    border-bottom: 1px solid $colorsGrey1;
+    @media (max-width: 550px){
+        flex-direction: column;
+        align-items: center;
+    }
+    .product_image{
+        display: flex;
+        width: 20%;
+        min-height: 100px;
+        img {
+            width: 100%;
+        }
+        &:hover{
+            cursor: pointer;
+        }
+        @media (max-width: 550px){
+            width: 100%;
+        }
+    }
+    .product_info-wrapper{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 25%;
+        height: 100px;
+        @media (max-width: 550px){
+            width: 100%;
+            align-items: center;
+        }
+        .product_info-name{
+            display: flex;
+            width: 100%;
+            height: 35px;
+            align-items: center;
+            justify-content: center;
+            @include productdaycardText4;
+            font-size: 14px;
+            &:hover {
+                cursor: pointer;
+                text-decoration: underline;
+                text-align: center;
+            }
+        }
+    }
+    .buy_price-wrapper{
+        display: flex;
+        width: 40%;
+        min-height: 150px;
+        justify-content: center;
+        align-items: center;
+        @media (max-width: 550px){
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+        .buy_price{
+            display: flex;
+            min-width: 100px;
+            height: 85px;
+            flex-direction: column;
+            .buy_price-previousWrapper{
+                display: flex;
+                width: 100%;
+                .buy_price-previous{
+                    display: flex;
+                    width: 100%;
+                    height: 50%;
+                    justify-content: center;
+                    align-items: center;
+                    text-decoration: line-through;
+                }
+            }
+            .buy_price-previousNotDisplay {
+                display: none;
+            }
+            .buy_price-actual{
+                display: flex;
+                width: 100%;
+                height: 50%;
+                margin-top: 10px;
+                justify-content: center;
+                align-items: center;
+                @include productdaycardText2;
+            }
+        }
+        
+    }
+}

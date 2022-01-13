@@ -1,0 +1,196 @@
+@import "../../constants/variables";
+
+.contacts-info{
+    display: flex;
+    width: 100%;
+    position: relative;
+    box-sizing: border-box;
+    align-items: center;
+    flex-direction: column;
+    background-color: $colorsGrey1; 
+    .mainstream {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        box-sizing: border-box;
+        max-width: $mainWidth;
+        @media(max-width: 1200px){
+            max-width: 970px;
+        }
+        @media(max-width: 770px){
+            max-width: none;
+        }
+    }
+}
+.mainContainer{
+    display: flex;
+    margin-top: 20px;
+    width: 100%;
+    min-height: 800px;
+    background-color: white;
+}
+.sidebar{
+    display: flex;
+    width: 25%;
+    min-height: 100%;
+    flex-direction: column;
+}
+.content{
+    display: flex;
+    width: 75%;
+    min-height: 100%;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    min-height: 100%;
+}
+.mainHeader{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 130px;
+}
+.header-title{
+    display: flex;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 80px;
+    width: 100%;
+    height: 80px;
+}
+.header-text{
+    display: flex;
+    width: 100%;
+    line-height: 70px;
+    height: 70px;
+}
+.email-buttons{
+   display: flex;
+   width: 73%;
+   min-height: 60px;
+   justify-content: space-between;
+}
+.emailbutton{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 300px;
+   height: 50px;
+   border: 1px solid gray;
+   &:hover{
+      cursor: pointer;
+   }
+}
+.contacts-listContainer{
+   margin-top: 30px;
+   display: flex;
+   width: 100%;
+   min-height: 400px;
+   justify-content: space-between;
+}
+.sidebar-list {
+   display: flex;
+   width: 35%;
+   min-height: 400px;
+   flex-direction: column;
+}
+.contacts-descriptionContainer{
+   display: flex;
+   width: 65%;
+   min-height: 400px;
+   flex-direction: column;
+}
+.sidebar-listItem{
+   display: flex;
+   width: 100%;
+   min-height: 70px;
+   font-size: 20px;
+   color: blue;
+   font-weight: 600;
+}
+.descrption-item{
+   display: flex;
+   width: 100%;
+   min-height: 70px;
+   font-size: 18px;
+}
+.mail-formContainer{
+   display: none;
+   position: absolute;
+   justify-content: right;
+   z-index: 100;
+   width: 100%;
+   height: 100%;
+}
+.mail-formContainer-serv{
+   display: none;
+   position: absolute;
+   justify-content: right;
+   z-index: 100;
+   width: 100%;
+   height: 100%;
+}
+.mail-form{
+   display: flex;
+   width: 30%;
+   height: calc(100%-30px);
+   flex-direction: column;
+   background-color: beige;
+   opacity: 1;
+   padding: 30px;
+   padding-bottom: 0;
+}
+.gray-screen{
+   display: flex;
+   width: 70%;
+   height: 100%;
+   background-color: gray;
+   opacity: 50%;
+}
+.gray-screen-serv{
+   display: flex;
+   width: 70%;
+   height: 100%;
+   background-color: gray;
+   opacity: 50%;
+}
+.mail-formHeader{
+   display: flex;
+   width: 100%;
+   flex-direction: column;
+   align-items: center;
+   min-height: 80px;
+   border-bottom: 1px solid gray;
+}
+.mail-formTitle{
+   font-size: 22px;
+   font-weight: 600;
+   margin-bottom: 20px;
+}
+.form-input-container{
+   display: flex;
+   flex-direction: column;
+   min-height: 700px;
+   width: 100%;
+}
+input{
+   width: 100%;
+   margin-top: 20px;
+   height: 60px;
+}
+.comment{
+   height: 100px;
+}
+select{
+   width: 100%;
+   height: 60px;
+}
+button{
+   width: 100%;
+   height: 60px;
+   background-color: blue;
+   color: white;
+   margin-top: 20px;
+}

@@ -1,0 +1,119 @@
+default:
+  image: node:12-alpine
+
+stages:
+  - test
+  - build
+  - deploy
+
+variables:
+  DOCKER_HOST: tcp://localhost:2375
+  DOCKER_DRIVER: overlay2
+  DOCKER_TLS_CERTDIR: ""
+  DEPLOYMENT_FILE: deployment.yaml
+  IMAGE_NAME_WEB_CLIENT: web-client
+  IMAGE_NAME_ADMIN_PANEL: admin-panel
+  IMAGE_NAME_API_SERVER: api-server
+#  CI_REGISTRY: registry.itismy.space
+
+test-web-client:
+  stage: test
+  before_script:
+    - cd ./web-client
+    - npm install
+  script:
+    - npm run lint
+    - npm test
+
+test-admin-panel:
+  stage: test
+  before_script:
+    - cd ./admin-panel
+    - npm install
+  script:
+    - npm test
+
+build-image-web-client:
+  stage: build
+  only:
+    - develop
+    - master
+  image: docker:19-git
+  services:
+    - docker:19-dind
+  variables:
+    CONTAINER_IMAGE: ${CI_REGISTRY}/${CI_PROJECT_NAME}-${IMAGE_NAME_WEB_CLIENT}:${CI_COMMIT_SHORT_SHA}
+    CONTAINER_IMAGE_LATEST: ${CI_REGISTRY}/${CI_PROJECT_NAME}-${IMAGE_NAME_WEB_CLIENT}:latest
+  script:
+    - cd ./web-client
+    - docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD} https://${CI_REGISTRY}
+    - docker build -t ${CONTAINER_IMAGE} .
+    - docker tag ${CONTAINER_IMAGE} ${CONTAINER_IMAGE}
+    - docker tag ${CONTAINER_IMAGE} ${CONTAINER_IMAGE_LATEST}
+    - docker push ${CONTAINER_IMAGE}
+    - docker push ${CONTAINER_IMAGE_LATEST}
+
+build-image-admin-panel:
+  stage: build
+  only:
+    - develop
+    - master
+  image: docker:19-git
+  services:
+    - docker:19-dind
+  variables:
+    CONTAINER_IMAGE: ${CI_REGISTRY}/${CI_PROJECT_NAME}-${IMAGE_NAME_ADMIN_PANEL}:${CI_COMMIT_SHORT_SHA}
+    CONTAINER_IMAGE_LATEST: ${CI_REGISTRY}/${CI_PROJECT_NAME}-${IMAGE_NAME_ADMIN_PANEL}:latest
+  script:
+    - cd ./admin-panel
+    - docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD} https://${CI_REGISTRY}
+    - docker build -t ${CONTAINER_IMAGE} --build-arg REACT_APP_API_SERVER=/api --build-arg PUBLIC_URL=/admin .
+    - docker tag ${CONTAINER_IMAGE} ${CONTAINER_IMAGE}
+    - docker tag ${CONTAINER_IMAGE} ${CONTAINER_IMAGE_LATEST}
+    - docker push ${CONTAINER_IMAGE}
+    - docker push ${CONTAINER_IMAGE_LATEST}
+
+build-image-api-server:
+  stage: build
+  only:
+    - develop
+    - master
+  image: docker:19-git
+  services:
+    - docker:19-dind
+  variables:
+    CONTAINER_IMAGE: ${CI_REGISTRY}/${CI_PROJECT_NAME}-${IMAGE_NAME_API_SERVER}:${CI_COMMIT_SHORT_SHA}
+    CONTAINER_IMAGE_LATEST: ${CI_REGISTRY}/${CI_PROJECT_NAME}-${IMAGE_NAME_API_SERVER}:latest
+  script:
+    - cd ./api-server
+    - docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD} https://${CI_REGISTRY}
+    - docker build -t ${CONTAINER_IMAGE} .
+    - docker tag ${CONTAINER_IMAGE} ${CONTAINER_IMAGE}
+    - docker tag ${CONTAINER_IMAGE} ${CONTAINER_IMAGE_LATEST}
+    - docker push ${CONTAINER_IMAGE}
+    - docker push ${CONTAINER_IMAGE_LATEST}
+
+deploy-dev:
+  stage: deploy
+  only:
+    - develop
+  image: dtzar/helm-kubectl
+  variables:
+    ENV: dev
+  script:
+    - kubectl config set-cluster k8s --server="${KUBE_SERVER}"
+    - kubectl config set-cluster k8s --client-certificate ${KUBE_CERTIFICATE_AUTHORITY_DATA}
+    - kubectl config set-credentials gitlab-admin --token="${KUBE_USER_TOKEN}"
+    - kubectl config set-cluster k8s --insecure-skip-tls-verify=true
+    - kubectl config set-context default --cluster=k8s --user=gitlab-admin --namespace=default
+    - kubectl config use-context default
+    - kubectl delete secret docker-registry itismy-registrykey || echo "Secret itismy-registrykey does not exist yet"
+    - kubectl create secret docker-registry itismy-registrykey --docker-server=${CI_REGISTRY} --docker-username=${DOCKER_USER} --docker-password=${DOCKER_PASSWORD}
+    - sed -i "s/<ENV>/${ENV}/g" ${DEPLOYMENT_FILE}
+    - sed -i "s/<REPOSITORY>/${CI_REGISTRY}/g" ${DEPLOYMENT_FILE}
+    - sed -i "s/<PROJECT>/${CI_PROJECT_NAME}/g" ${DEPLOYMENT_FILE}
+    - sed -i "s/<IMAGE_NAME_WEB_CLIENT>/${IMAGE_NAME_WEB_CLIENT}/g" ${DEPLOYMENT_FILE}
+    - sed -i "s/<IMAGE_NAME_ADMIN_PANEL>/${IMAGE_NAME_ADMIN_PANEL}/g" ${DEPLOYMENT_FILE}
+    - sed -i "s/<IMAGE_NAME_API_SERVER>/${IMAGE_NAME_API_SERVER}/g" ${DEPLOYMENT_FILE}
+    - sed -i "s/<VERSION>/${CI_COMMIT_SHORT_SHA}/g" ${DEPLOYMENT_FILE}
+    - kubectl apply -f ${DEPLOYMENT_FILE}

@@ -1,0 +1,81 @@
+@import "../../../../constants/variables";
+
+.checkoutProduct{
+    display: flex;
+    width: 96%;
+    height: 130px;
+    margin-top: 25px;
+    align-items: center;
+    border: 1px solid $colorsGrey1;
+    @media(max-width: 1200px) {
+        max-width: 970px;
+    }
+    .checkoutProduct_image{
+        display: flex;
+        width: 80px;
+        height: 80px;
+        img {
+            width: 80px;
+            object-fit: contain;
+        }
+    }
+    .checkoutProduct_info-wrapper{
+        display: flex;
+        width: 80%;
+        height: 120px;
+        flex-direction: column;
+        .checkoutProduct_info-name{
+            display: flex;
+            width: 100%;
+            height: 20px;
+            margin-top: 15px;
+            @include productdaycardText3;
+        }
+        .checkoutProduct_info-priceWrapper{
+            display: flex;
+            width: 100%;
+            height: 50px;
+            margin-top: 30px;
+            justify-content: space-between;
+            align-items: center;
+            .checkoutProduct_info-price{
+                display: flex;
+                width: 150px;
+                height: 50px;
+                flex-direction: column;
+                .checkoutProduct_info-oldPriceWrapper{
+                    display: flex;
+                    width: 150px;
+                    height: 25px;
+                    .checkoutProduct_info-oldPrice{
+                        display: flex;
+                        width: 150px;
+                        height: 25px;
+                        @include prevPriceText;
+                    }
+                }
+                .checkoutProduct_actualPrice-container{
+                    display: flex;
+                    width: 150px;
+                    height: 25px;
+                    .checkoutProduct_actualPrice, .checkoutProduct_actualQty{
+                        display: flex;
+                        min-width: 60px;
+                        height: 25px;
+                        @include productdaycardText1;
+                        font-size: 14px;
+                    }
+                }
+            }
+            .checkoutProduct_totalSum{
+                display: flex;
+                width: 80px;
+                height: 40px;
+                justify-content: center;
+                align-items: flex-end;
+                @include productdaycardText1;
+                font-size: 14px;
+            }
+        }
+    }
+}

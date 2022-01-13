@@ -1,0 +1,11 @@
+@import "../../../constants/variables";
+
+.checkoutTotalSum{
+    display: flex;
+    width: 96%;
+    height: 60px;
+    align-items: center;
+    margin-top: 25px;
+    justify-content: space-around;
+    @include productdaycardText3;
+}

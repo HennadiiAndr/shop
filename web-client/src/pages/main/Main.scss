@@ -1,0 +1,59 @@
+@import './../../constants/variables';
+
+
+.page-main {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    align-items: center;
+    flex-direction: column;
+    background-color: $colorsGrey1; 
+}
+.mainstream {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    box-sizing: border-box;
+    max-width: $mainWidth;
+    @media(max-width: 1200px){
+        max-width: 970px;
+    }
+    @media(max-width: 770px){
+        max-width: none;
+    }
+}
+
+
+.maincontent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 1000px;
+    background-color: $colorsGrey1;
+    box-sizing: border-box;
+}
+.mainsection {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 1000px;
+    background-color: $colorsGrey1;
+    box-sizing: border-box;
+}
+.productCards_container {
+    display: flex;
+    max-width: 100%;
+    min-height: 500px;
+    margin-top: 25px;
+    &:first-child {
+        border-left: 1px solid $colorsGrey1;
+    }
+    @media(max-width:767px){
+        flex-wrap: wrap;
+        margin-top: 0;
+    }
+    @media(max-width:550px){
+        flex-direction: column;
+        margin-top: 0;
+    }
+}

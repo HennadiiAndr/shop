@@ -1,0 +1,72 @@
+@import '../../../../../constants/variables';
+
+.headercatalogcontainer{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    position: relative;
+    margin-left: 5px;
+    outline: none;
+    @media(max-width: 770px){
+        width: 78%;
+    }
+    @media(max-width: 550px){
+        width: 78%;
+    }
+}
+.headercatalog {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 44px;
+    border-radius: 2px;
+    background-color: $colorYellow;
+    @include productdaycardText1;
+}
+
+.headercatalog {
+    cursor: pointer;
+}
+
+.catalogDropdown-wrapper {
+    display: block;
+    max-height: 600px;
+    position: relative;
+    width: 100%;
+}
+.catalogDropdown {
+    display: block;
+    position: absolute;
+    height: auto;
+    background-color: $colorYellow;
+    max-height: 0;
+    overflow: hidden;
+    flex-direction: column;
+    width: 100%;
+    transition: max-height 0.5s ease;
+    box-sizing: border-box;
+    left: 0;
+    z-index: 2;
+    @include productdaycardText1;
+
+    &Opened {
+        max-height: 500px;
+    }
+}
+
+
+.headercatalogcontainerFeatures {
+    padding: 0 10px;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+    &:last-child {
+        padding-bottom: 10px;
+    }
+}
+

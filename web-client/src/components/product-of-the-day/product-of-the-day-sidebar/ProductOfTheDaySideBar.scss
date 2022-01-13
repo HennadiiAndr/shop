@@ -1,0 +1,41 @@
+@import '../../../constants/variables';
+
+.ProductOfTheDay_SideBar-wrapper{
+    display: flex;
+    width: 50%;
+    @media(max-width: 770px) {
+        display: none;
+    }
+    .ProductOfTheDay_SideBar {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        min-height: 480px;
+        border-left: 1px solid $colorsGrey1;
+        @media(max-width: 770px) {
+            display: none;
+        }
+    }
+    .ProductOfTheDay_Sidebar-Section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-top: 1px solid $colorsGrey1;
+        max-width: 100%;
+        min-height: 235px;
+        a {
+            display: flex;
+            justify-content: center;
+        }
+        img {
+            width: 98%;
+            object-fit: contain;
+            padding-top: 5px;
+        }
+    } 
+    .ProductOfTheDay_Sidebar-Section:first-child{
+        border-top: none;
+    } 
+}
+

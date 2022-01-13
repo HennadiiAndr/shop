@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="jcalc-style.css">
+    <title>JustinCalc</title>
+</head>
+<body>
+    <div class="main">
+        <div class="main_container">
+            <div class="calc_container">
+                <div class="title-block_container">
+                    <div class="title-block">
+                        <div class="title-block_firstTitle">
+                            стоимость доставки
+                        </div>
+                        <div class="title-block_secondTitle">
+                            РАССЧИТЫВАЙ
+                        </div>
+                        <div class="title-block_thirthTitle">
+                            на нас
+                        </div>
+                    </div>
+                </div>
+                <div class="input-block_container">
+                    <div class="input-block_sideLeft">
+                        <div class="input-block_miniUpLeft" >
+                            <div class="input-deliveryType-container">
+                                <div class="input-deliveryType-containerMini">
+                                    <div class="input-minicontainer">
+                                        <input type='radio' class="comfort-pass_radio" name="deliveryType" value="comfort-pass" checked>
+                                        <label for="comfort-pass_radio">удобная передача</label>
+                                    </div>
+                                    <div class="input-minicontainer">
+                                        <input type='radio' class="city-limits_radio" name="deliveryType" value="city-limits">
+                                        <label for="city-limits_radio">в пределах города</label>
+                                    </div>
+                                </div>
+                                <div class="input-deliveryType-containerMini">
+                                    <div class="input-minicontainer">
+                                        <input type='radio' class="across-Ukraine_radio" name="deliveryType" value="across-Ukraine">
+                                        <label for="across-Ukraine_radio">по Украине</label>
+                                    </div>
+                                    <div class="input-minicontainer">
+                                        <input type='radio' class="region-limit_radio" name="deliveryType" value="region-limit">
+                                        <label for="region-limits_radio">в пределах области</label>
+                                    </div>
+                                </div>
+                            </div> 
+                            <div class="sendDeliveryCity_block">
+                                <div class="city-display">
+                                    Откуда
+                                    <select class = "sendCity">
+                                        <option value="выберите откуда" disabled selected></option>
+
+                                    </select>
+                                </div>
+                                <div class="city-display">
+                                    Куда
+                                    <select class = "deliveryCity">
+                                        <option value="выберите куда" disabled selected></option>
+                                        
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                            <div class="input-block_mini">
+                                <div class="insuranceCOD_block">
+                                    <div class="insurance_container">
+                                        <div class="text">заявленная стоимость</div>
+                                        <input class="insurance" type = "number" placeholder="грн.">
+                                    </div>
+                                    <div class="COD_container">
+                                        <div class="text">наложенный платеж</div>
+                                        <input class="COD" type = "number" placeholder="грн.">
+                                    </div>
+                                </div> 
+                            </div>  
+                    </div>
+                    <div class="input-block_side">
+                        <div class="input-block_miniUp">
+                            <div class="sendAddressDelivery_container">
+                                <div class="send_container">
+                                    <div class="text">Тип отправления</div>
+                                    <select class = "sendingType">
+                                        <option value = "packadge" id="packadge" selected >посылка</option>
+                                        <option value = "load" id="load">груз</option>
+                                        <option value = "pallet">палета</option>
+                                    </select>
+                                </div>
+                                <div class="input-addressDeliveryCheck-block">
+                                    <div class="input-addressDeliveryCheck-container">
+                                        <div class="input-deliveryType-containerMini">
+                                            <div class="input-minicontainer">
+                                                <input type='checkbox' class="address-take_radio" name="addressTake" value="address-take"></input>
+                                                <label for="address-take">адресный забор</label>
+                                            </div>
+                                        </div>
+                                        <div class="input-deliveryType-containerMini">
+                                            <div class = "input-minicontainer">
+                                                <input type='checkbox' class="address-delivery_radio" name="addressDelivery" value="address-delivery"></input>
+                                                <label for="address-delivery">адресная доставка</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="palletType-container">
+                                        <div class="palletType-minicontainer">
+                                            <input type="radio" class="tiny-pallet" name="pallet" value = "0.48" checked></input>
+                                            <label for="tiny-pallet">0.48 м</label>
+                                        </div>
+                                        <div class="palletType-minicontainer">
+                                            <input type="radio" class="middle-pallet" name="pallet" value = "0.96"></input>
+                                            <label for="middle-pallet">0.96 м</label>
+                                        </div>
+                                        <div class="palletType-minicontainer">
+                                            <input type="radio" class="large-pallet" name="pallet" value = "2"></input>
+                                            <label for="large-pallet">2 м</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-block_miniweightvolume">
+                            <div class="weightvolume_block">
+                                <div class="weight_container">
+                                    <div class="text">Вес</div>
+                                    <input class="weight" type = "number" placeholder="кг">
+                                </div>
+                                <div class="volume_container">
+                                    <div class="text">Объем</div>
+                                    <input class = "volume" type = "number" placeholder="м.куб.">
+                                </div>
+                            </div>
+                            <div class="volume-calculate_block">
+                                <div class="volume-calculate_container">
+                                    <div class="volume-calc">
+                                        <img src="Vector.png" alt="calc" class="calc-image">
+                                        <div class="calc-text">Посчитать объем</div>
+                                    </div>
+                                </div> 
+                                <div class="volume-calcInput-container" >
+                                    <div class="volume-fields_block">
+                                        <div class="input_dimention-block">
+                                            <label for="input_length-field" class="dimention-input">длина</label>
+                                            <input class="input_length-field" type="number" placeholder="см">
+                                        </div>
+                                        <div class="input_dimention-block">
+                                            <label for="input_width-field" class="dimention-input">ширина</label>
+                                            <input class="input_width-field" type="number" placeholder="см">
+                                        </div>
+                                        <div class="input_dimention-block">
+                                            <label for="input_height-field" class="dimention-input">высота</label>
+                                            <input class="input_height-field" type="number" placeholder="см">
+                                        </div>
+                                        <button class="dimentions_submit">Посчитать объем</button>
+                                    </div>
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="resultBtn-container">
+                    <button class = "resultbtn">УЗНАТЬ ЦЕНУ</button>
+                </div>
+                <div class="result_block">
+                    <div class="result_block-container">
+                        <div class="result_titles">
+                            <div class="rate-block">
+                                <div class="rate-text">Тариф:</div>
+                                <div class="rate"></div>
+                            </div>
+                            <div class="addressTakeDisplay-block">
+                                <div class="addressTakeDisplay-text">Адресный забор:</div>
+                                <div class="addressTakeDisplay"></div>
+                            </div>
+                            <div class="addressDeliveryDisplay-block">
+                                <div class="addressDeliveryDisplay-text">Адресная доставка:</div>
+                                <div class="addressDeliveryDisplay"></div>
+                            </div>
+                            <div class="insurancePay-block">
+                                <div class="insurancePay-text">Страховой платеж:</div>
+                                <div class="insurancePay"></div>
+                            </div>
+                            <div class="CODpay-block">
+                                <div class="CODpay-text">Комиссия за наложенный платеж:</div>
+                                <div class="CODpay"></div>
+                            </div>
+                            
+                        </div>
+                        <div class="result_display_block">
+                            <div class = "result-display-title">Итоговая стоимость</div>
+                            <div class="result-display-field">
+                                <div class="result-display"></div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>   
+    <script src="jcalc-script.js"></script>
+    <script src='get-data.js'></script>
+</body>
+</html>

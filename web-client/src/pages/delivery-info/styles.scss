@@ -1,0 +1,119 @@
+@import './../../constants/variables';
+
+.payment-delivery{
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    align-items: center;
+    flex-direction: column;
+    background-color: $colorsGrey1; 
+    .mainstream {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        box-sizing: border-box;
+        max-width: $mainWidth;
+        @media(max-width: 1200px){
+            max-width: 970px;
+        }
+        @media(max-width: 770px){
+            max-width: none;
+        }
+    }
+}
+.mainContainer{
+    display: flex;
+    margin-top: 20px;
+    width: 100%;
+    min-height: 800px;
+    background-color: white;
+}
+.content{
+    display: flex;
+    width: 75%;
+    min-height: 100%;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    min-height: 100%;
+}
+.sidebar{
+    display: flex;
+    width: 25%;
+    min-height: 100%;
+    flex-direction: column;
+}
+.mainHeader{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 130px;
+}
+.deliveryButton{
+    display: flex;
+    align-items: center;
+    height: 130px;
+    width: 170px;
+    text-align: center;
+    border: 1px solid gray;
+    border-left: none;
+}
+.deliveryButton:hover {
+    cursor: pointer;
+}
+
+.mainText{
+    display: flex;
+    margin-top: 40px;
+    width: 100%;
+    height: 200px;
+    border: 1px solid gray;
+}
+.textBox{
+    display: flex;
+    margin-top: 50px;
+    width: 100%;
+    height: 150px;
+}
+.header-title{
+    display: flex;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 80px;
+    width: 100%;
+    height: 80px;
+}
+.header-text{
+    display: flex;
+    width: 100%;
+    line-height: 70px;
+    height: 70px;
+}
+.button-block{
+    display: flex;
+    width: 100%;
+    height: 132px;
+    border-left: 1px solid gray;
+}
+.navbar{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    width: 100%;
+    min-height: 100%;
+}
+.navItem{
+    display: flex;
+    height: 35px;
+    font-size: 20px;
+    font-weight: 600;
+    text-decoration: none;
+    color: black;
+}
+.navItem:hover {
+    cursor: pointer;
+    color: blue;
+    text-decoration: underline;
+}

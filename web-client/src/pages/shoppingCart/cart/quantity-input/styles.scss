@@ -1,0 +1,31 @@
+@import '../../../../constants/variables';
+
+.quantity_change-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    min-height: 60px;
+    .quantity_change-block{
+        display: flex;
+        width: 200px;
+        height: 58px;
+        justify-content: center;
+        border: 1px solid $colorsGrey1;
+        border-radius: 3px;
+        .quantity_change-plus, .quantity_value, .quantity_change-minus{
+            display: flex;
+            width: 68px;
+            height: 58px;
+            justify-content: center;
+            align-items: center;
+        }
+        .quantity_change-plus, .quantity_change-minus {
+            &:hover{
+                cursor: pointer;
+                background-color: $colorsGrey1;
+            } 
+        }
+    }
+}

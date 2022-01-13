@@ -1,0 +1,41 @@
+$colorsGrey0: #FFF;
+$colorsGrey1: #859cb6;
+$colorsGrey2: #333;
+$colorYellow: #fdec04;
+$colorsBluePrimary: #1060c1;
+$colorsBlueLight: #1170d0;
+$colorsGrey3: #000;
+$colorsBlueDark: #003a7e;
+$colorsBlueLighter: #1a8cff;
+$colorsRedLighter: #ff5d50;
+$colorsRedPrimary: #d01e1e;
+@mixin text-banner1 {
+    font-size: 10px;
+    color: $colorsGrey0;
+    font-weight: 800;
+}
+@mixin productdaycardText1 {
+    font-size: 14px;
+    font-weight: 600;
+}
+@mixin productdaycardText2 {
+    font-size: 30px;
+    font-weight: 700;
+    color: $colorsRedPrimary;
+}
+@mixin prevPriceText {
+    font-size: 13px;
+    text-decoration: line-through;
+}
+@mixin productdaycardText3 {
+    font-size: 13px;
+    color: $colorsBlueDark;
+    font-weight: 700;
+}
+@mixin productdaycardText4 {
+    font-size: 12px;
+    color: $colorsGrey1;
+}
+
+$mainWidth: 1200px;
+$mainPadding: 5px;

@@ -1,0 +1,23 @@
+@import "../../constants/variables";
+
+.checkout {
+    display: flex;
+    width: 100%;
+    min-height: 500px;
+    box-sizing: border-box;
+    justify-content: center;
+    background-color: $colorsGrey1;
+    .mainStream{
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        box-sizing: border-box;
+        max-width: $mainWidth;
+        @media(max-width: 1200px){
+            max-width: 970px;
+        }
+        @media(max-width: 770px){
+            max-width: none;
+        }
+    }
+}

@@ -1,0 +1,31 @@
+@import './../../constants/variables';
+
+.returnInfo{
+    display: flex;
+    width: 100%;
+    position: relative;
+    box-sizing: border-box;
+    align-items: center;
+    flex-direction: column;
+    background-color: $colorsGrey1; 
+    .mainstream {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        box-sizing: border-box;
+        max-width: $mainWidth;
+        @media(max-width: 1200px){
+            max-width: 970px;
+        }
+        @media(max-width: 770px){
+            max-width: none;
+        }
+    }
+}
+.returnInfo-container{
+   display: flex;
+   width: 100%;
+   min-height: 700px;
+   background-color: white;
+   margin-top: 20px;
+}

@@ -1,0 +1,52 @@
+@import '../../../../constants/variables';
+
+.headerdowncontainer {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    @media(max-width: 770px){
+        flex-wrap: wrap;
+        height: 100%;
+        justify-content: space-between;
+        margin: auto;
+    }
+    @media(max-width: 550px){
+        flex-wrap: wrap;
+        height: 100%;
+    }
+}
+
+.headerlogo {
+    position: relative;
+    width: 25%;
+    height: 44px;
+    @media(max-width: 770px){
+        order: 0;
+        width: 10%;
+        height: 22px;
+        display: flex;
+    }
+}
+.headerlogo img {
+    position: absolute;
+    height: 80px;
+    width: 80px;
+    left: 0;
+    top: -5px;
+    z-index: 1;
+    @media(max-width: 770px){
+        width: 55px;
+        height: 55px;
+    }
+}
+.header_cartcatalog-wrapper{
+    display: flex;
+    width: 25%;
+    @media(max-width: 770px){
+        width: 70%;
+    }
+    @media(max-width: 550px){
+        width: 80%;
+    }
+}

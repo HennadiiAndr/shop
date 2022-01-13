@@ -1,0 +1,94 @@
+@import "../../../../constants/variables";
+
+
+.checkoutNameInput{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: 450px;
+    @media (max-width: 550px) {
+        width: 100%;
+    }
+    input {
+        outline: 0 !important;
+    }
+    select {
+        outline: 0 !important;
+    }
+    .checkoutMain_phone-wrapper{
+        display: flex;
+        width: 96%;
+        height: 60px;
+        margin-top: 25px;
+        align-items: center;
+        border: 1px solid $colorsGrey1;
+    }
+    .checkoutMain_phone{
+        @include productdaycardText3;
+        border: none;
+        margin-left: 10px;
+        width: 80%;
+        height: 40px;
+        line-height: 40px;
+    }
+    .email_wrapper{
+        display: flex;
+        width: 96%;
+        height: 60px;
+        margin-top: 25px;
+        align-items: center;
+        border: 1px solid $colorsGrey1;
+    }
+    .email {
+        border: 0;
+        @include productdaycardText3;
+        height: 40px;
+        width: 80%;
+        line-height: 40px;
+        margin-left: 10px;
+    }
+    .delivery, .pick-up, .pay-up{
+        display: flex;
+        width: 96%;
+        height: 60px;
+        padding: 10px;
+        margin-top: 25px;
+        @include productdaycardText3;
+        border: 1px solid $colorsGrey1;
+    }
+    .checkoutMain_name{
+        display: flex;
+        width: 96%;
+        justify-content: space-between;
+        min-height: 60px;
+        margin-top: 25px;
+        @media(max-width: 770px){
+            flex-direction: column;
+            align-items: center;
+            width: 96%;
+        }
+        .name_wrapper{
+            display: flex;
+            height: 60px;
+            width: 48%;
+            @include productdaycardText4;
+            border: 1px solid $colorsGrey1;
+            &:last-child {
+                margin-left: 27px;
+            }
+            @media(max-width: 770px){
+                width: 100%;
+                &:last-child {
+                    margin-left: 0;
+                    margin-top: 25px;
+                }
+            }
+        }
+        .name{
+            margin-left: 10px;
+            border: 0;
+            @include productdaycardText3;
+        }
+    }
+}

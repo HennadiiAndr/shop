@@ -1,0 +1,73 @@
+@import '../../constants/variables';
+
+.footer {
+    display: flex;
+    width: 100%;
+    margin-top: 25px;
+    flex-direction: column;
+    min-height: 40px;
+    background-color: black;
+}
+.footer-copyright{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 40px;
+    background-color: black;
+    color: white;
+    font-size: 10px;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 40px;
+}
+.footer-container{
+    display: flex;
+    margin-top: 15px;
+    width: 100%;
+    min-height: 200px;
+}
+.footer-sidebar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 25%;
+    height: 100%;
+}
+.footer-navbar{
+    display: flex;
+    width: 60%;
+    height: 100%;
+}
+.navbar-column{
+    display: flex;
+    width: 25%;
+    height: 100%;
+    flex-direction: column;
+}
+.footer-navbarItem{
+    display: flex;
+    width: 100%;
+    height: 20px;
+    color: white;
+    font-size: 12px;
+    line-height: 20px;
+    text-decoration: none;
+}
+.footer-navbarLink{
+    display: flex;
+    width: 100%;
+    height: 20px;
+    color: white;
+    font-size: 12px;
+    line-height: 20px;
+    padding-left: 40px;
+    text-decoration: none;
+}
+.footer-navbarLink:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+.footer-navbarItem:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}

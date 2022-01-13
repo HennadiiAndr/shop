@@ -1,0 +1,278 @@
+#apiVersion: v1
+#kind: Namespace
+#metadata:
+#  name: <ENV>
+#  labels:
+#    app: <ENV>
+#---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: <PROJECT>-<ENV>-<IMAGE_NAME_WEB_CLIENT>
+#  namespace: <ENV>
+  labels:
+    app: <PROJECT>-<ENV>-<IMAGE_NAME_WEB_CLIENT>
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: <PROJECT>-<ENV>-<IMAGE_NAME_WEB_CLIENT>
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 50%
+  template:
+    metadata:
+      labels:
+        app: <PROJECT>-<ENV>-<IMAGE_NAME_WEB_CLIENT>
+    spec:
+      imagePullSecrets:
+        - name: itismy-registrykey
+      containers:
+        - name: <PROJECT>-<ENV>-<IMAGE_NAME_WEB_CLIENT>
+          image: <REPOSITORY>/<PROJECT>-<IMAGE_NAME_WEB_CLIENT>:<VERSION>
+          ports:
+            - name: http
+              containerPort: 80
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 2
+            periodSeconds: 2
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 2
+            periodSeconds: 2
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: <PROJECT>-<ENV>-<IMAGE_NAME_WEB_CLIENT>
+  labels:
+    app: <PROJECT>-<ENV>-<IMAGE_NAME_WEB_CLIENT>
+spec:
+  selector:
+    app: <PROJECT>-<ENV>-<IMAGE_NAME_WEB_CLIENT>
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: <PROJECT>-<ENV>-<IMAGE_NAME_ADMIN_PANEL>
+#  namespace: <ENV>
+  labels:
+    app: <PROJECT>-<ENV>-<IMAGE_NAME_ADMIN_PANEL>
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: <PROJECT>-<ENV>-<IMAGE_NAME_ADMIN_PANEL>
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 50%
+  template:
+    metadata:
+      labels:
+        app: <PROJECT>-<ENV>-<IMAGE_NAME_ADMIN_PANEL>
+    spec:
+      imagePullSecrets:
+        - name: itismy-registrykey
+      containers:
+        - name: <PROJECT>-<ENV>-<IMAGE_NAME_ADMIN_PANEL>
+          image: <REPOSITORY>/<PROJECT>-<IMAGE_NAME_ADMIN_PANEL>:<VERSION>
+          ports:
+            - name: http
+              containerPort: 80
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 2
+            periodSeconds: 2
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 2
+            periodSeconds: 2
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: <PROJECT>-<ENV>-<IMAGE_NAME_ADMIN_PANEL>
+  labels:
+    app: <PROJECT>-<ENV>-<IMAGE_NAME_ADMIN_PANEL>
+spec:
+  selector:
+    app: <PROJECT>-<ENV>-<IMAGE_NAME_ADMIN_PANEL>
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: <PROJECT>-<ENV>-postgresql
+#  namespace: <ENV>
+  labels:
+    app: <PROJECT>-<ENV>-postgresql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: <PROJECT>-<ENV>-postgresql
+  template:
+    metadata:
+      labels:
+        app: <PROJECT>-<ENV>-postgresql
+    spec:
+      volumes:
+        - name: <PROJECT>-<ENV>-data
+          nfs:
+            server: 192.168.122.1
+            path: /mnt/data/nfs/<PROJECT>-<ENV>/postgresql
+      containers:
+        - name: postgresql
+          image: sameersbn/postgresql:10-2
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: DB_NAME
+              value: postgres
+            - name: PG_PASSWORD
+              value: postgres
+            - name: DB_PASS
+              value: postgres
+            - name: DB_USER
+              value: postgres
+          volumeMounts:
+            - mountPath: /var/lib/postgresql
+              name: <PROJECT>-<ENV>-data
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: <PROJECT>-<ENV>-postgresql
+#  namespace: <ENV>
+spec:
+  selector:
+    app: <PROJECT>-<ENV>-postgresql
+  ports:
+    - name: postgresql
+      protocol: TCP
+      port: 5432
+      targetPort: 5432
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: <PROJECT>-<ENV>-<IMAGE_NAME_API_SERVER>
+  #  namespace: <ENV>
+  labels:
+    app: <PROJECT>-<ENV>-<IMAGE_NAME_API_SERVER>
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: <PROJECT>-<ENV>-<IMAGE_NAME_API_SERVER>
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 50%
+  template:
+    metadata:
+      labels:
+        app: <PROJECT>-<ENV>-<IMAGE_NAME_API_SERVER>
+    spec:
+      imagePullSecrets:
+        - name: itismy-registrykey
+      containers:
+        - name: <PROJECT>-<ENV>-<IMAGE_NAME_API_SERVER>
+          image: <REPOSITORY>/<PROJECT>-<IMAGE_NAME_API_SERVER>:<VERSION>
+          env:
+            - name: POSTGRES_CONNECTION
+              value: "postgres://postgres:postgres@<PROJECT>-<ENV>-postgresql:5432/postgres"
+            - name: API_INGRESS_ROUTE
+              value: /api
+
+#          ports:
+#            - name: http
+#              containerPort: 8000
+#          livenessProbe:
+#            httpGet:
+#              path: /ping
+#              port: 8000
+#            initialDelaySeconds: 2
+#            periodSeconds: 2
+#          readinessProbe:
+#            httpGet:
+#              path: /ping
+#              port: 8000
+#            initialDelaySeconds: 2
+#            periodSeconds: 2
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: <PROJECT>-<ENV>-<IMAGE_NAME_API_SERVER>
+  #  namespace: <ENV>
+  labels:
+    app: <PROJECT>-<ENV>-<IMAGE_NAME_API_SERVER>
+spec:
+  selector:
+    app: <PROJECT>-<ENV>-<IMAGE_NAME_API_SERVER>
+#  type: LoadBalancer
+#  externalTrafficPolicy: Local
+#  loadBalancerIP: "192.168.122.204"
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8000
+---
+
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: <PROJECT>-<ENV>
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.org/rewrites: "serviceName=shop-dev-api-server rewrite=/;serviceName=shop-dev-admin-panel rewrite=/"
+    cert-manager.io/issuer: "letsencrypt-prod"
+spec:
+  tls:
+    - hosts:
+        - <ENV>.itismy.space
+      secretName: <PROJECT>-<ENV>-tls
+  rules:
+    - host: <ENV>.itismy.space
+      http:
+        paths:
+          - backend:
+              serviceName: <PROJECT>-<ENV>-<IMAGE_NAME_WEB_CLIENT>
+              servicePort: 80
+          - path: /api
+            backend:
+              serviceName: <PROJECT>-<ENV>-<IMAGE_NAME_API_SERVER>
+              servicePort: 80
+          - path: /admin
+            backend:
+              serviceName: <PROJECT>-<ENV>-<IMAGE_NAME_ADMIN_PANEL>
+              servicePort: 80
